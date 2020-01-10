@@ -1,0 +1,36 @@
+diff -uNr pnm2ppa-1.04/Makefile pnm2ppa-1.04.redhat/Makefile
+--- pnm2ppa-1.04/Makefile	Thu Nov  2 13:33:08 2000
++++ pnm2ppa-1.04.redhat/Makefile	Sat Nov 11 13:25:28 2000
+@@ -10,7 +10,7 @@
+ INSTALL=install
+ 
+ # production build
+-CFLAGS=-Wall -pedantic -O2 -g -DNDEBUG 
++CFLAGS= $(RPM_OPT_FLAGS) -DNDEBUG 
+ LDFLAGS=-lm
+ OBJS = pnm2ppa.o syslog.o ppa.o image.o dither.o cutswath.o hash_ink.o gamma.o
+ SRC =  pnm2ppa.c syslog.c ppa.c image.c dither.c cutswath.c hash_ink.c gamma.c
+diff -uNr pnm2ppa-1.04/pnm2ppa.conf pnm2ppa-1.04.redhat/pnm2ppa.conf
+--- pnm2ppa-1.04/pnm2ppa.conf	Sat Oct 28 11:02:57 2000
++++ pnm2ppa-1.04.redhat/pnm2ppa.conf	Sat Nov 11 13:26:57 2000
+@@ -12,7 +12,7 @@
+ # will be used.   The printer version can also be set with the command line
+ # option e.g., "-v 720".
+ 
+-version   ERROR    # PNM2PPA WIIL *NOT* WORK UNTIUL THIS ENTRY IS REMOVED!!!!
++
+ #version  720	# 710, 712, 722 also acceptable
+ #version  820
+ #version 1000
+@@ -29,8 +29,9 @@
+ # configuration  file (/etc/pnm2ppa.conf), and not from configuration files 
+ # specified  with the pnm2ppa option "-f".
+ 
+-#silent 1
+-#verbose 1
++silent 1   #SYSTEM LOG MESSAGES SILENCED
++#verbose 1      
++
+ 
+ #---------set the margins of the printed page-------------------
+ # Margins: these are distances from the edges of the paper in
